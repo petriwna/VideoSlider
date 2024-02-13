@@ -1,0 +1,32 @@
+.carousel-button {
+  position:absolute;
+  z-index:10;
+  align-self: center;
+
+  &.prev &.next {
+    position:absolute;
+    transform: translateY(-50%);
+    cursor: pointer;
+    fill:rgba(0,0,0, 0.3);
+    width: 20px;
+    transition: all 0.3s;
+  }
+
+  &.next {
+    right: 20px;
+    &:hover {
+      cursor: pointer;
+      fill:rgba(0,0,0, 0.7);
+    }
+  }
+
+  &.prev {
+    transform: rotate(180deg);
+    left: 20px;
+
+    &:hover {
+      cursor: pointer;
+      fill:rgba(0,0,0, 0.7);
+    }
+  }
+}
