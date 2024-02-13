@@ -1,7 +1,16 @@
 export class Slide {
   constructor() {}
 
-  createSlide() {
+  // createSlideContent(fragment) {
+  //   const content = document.createElement('div');
+  //   content.classList.add('slider__content');
+  //
+  //   content.innerHTML = fragment;
+  //
+  //   return content;
+  // }
+
+  createSlide(fragment) {
     const slide = document.createElement('li');
     const wrap = document.createElement('div');
     const back = document.createElement('div');
@@ -11,10 +20,10 @@ export class Slide {
 
     wrap.classList.add('slider__wrap');
     wrap.appendChild(back);
-
     back.classList.add('slider__back');
 
     inner.classList.add('slider__inner');
+    inner.innerHTML = fragment;
 
     slide.appendChild(wrap);
     slide.appendChild(inner);
@@ -23,7 +32,6 @@ export class Slide {
   }
 
   setActiveSlide(slide) {
-    console.log('active');
     return slide.classList.add('slider__slide--active');
   }
 

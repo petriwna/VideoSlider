@@ -6,16 +6,17 @@ export class Slider {
     this.slides = [];
     this.activeIndex = 0;
   }
+
   async renderSlider(videos) {
     const slider = document.querySelector('.slider__slides');
     const videoData = await videos;
 
     for (const video of videoData) {
-      const slide = this.slide.createSlide();
+      const slide = this.slide.createSlide(video.html);
       this.slides.push(slide);
 
       slider.appendChild(slide);
-      console.log(video.thumbnail_url);
+
       this.slide.setBackgroundSlide(slide.querySelector('.slider__back'), video.thumbnail_url);
     }
 
