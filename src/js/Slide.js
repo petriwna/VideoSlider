@@ -1,46 +1,80 @@
 export class Slide {
-  constructor() {}
+  constructor(title, thumbnailUrl) {
+    this.element = this.createSlide(title);
+    this.setBackgroundSlide(this.element.querySelector('.slider__back'), thumbnailUrl);
+  }
 
-  createSlide(fragment) {
+  createSlide(title) {
     const slide = document.createElement('li');
-    const wrap = document.createElement('div');
-    const back = document.createElement('div');
-    const inner = document.createElement('div');
+    const wrap = this.createWrap();
+    const back = this.createBack();
+    const inner = this.createInner();
+    const content = this.createContent(title);
 
     slide.classList.add('slider__slide');
 
-    wrap.classList.add('slider__wrap');
-    wrap.appendChild(back);
-    back.classList.add('slider__back');
+    inner.appendChild(content);
 
-    inner.classList.add('slider__inner');
-    inner.innerHTML = fragment;
+    wrap.appendChild(back);
 
     slide.appendChild(wrap);
     slide.appendChild(inner);
 
-    setTimeout(function () {
-      document.querySelectorAll('.slider__wrap').forEach((wrap) => {
-        wrap.classList.add('slider__wrap--hacked');
-      });
+    setTimeout(() => {
+      this.addHackedClass();
     }, 1000);
 
     return slide;
   }
 
-  setActiveSlide(slide) {
-    return slide.classList.add('slider__slide--active');
+  createWrap() {
+    const wrap = document.createElement('div');
+    wrap.classList.add('slider__wrap');
+
+    return wrap;
+  }
+
+  createBack() {
+    const back = document.createElement('div');
+    back.classList.add('slider__back');
+
+    return back;
+  }
+
+  createInner() {
+    const inner = document.createElement('div');
+    inner.classList.add('slider__inner');
+
+    return inner;
+  }
+
+  createContent(title) {
+    const content = document.createElement('div');
+    content.setAttribute('id', title);
+    content.classList.add('slider__content');
+
+    return content;
+  }
+
+  addHackedClass() {
+    document.querySelectorAll('.slider__wrap').forEach((wrap) => {
+      wrap.classList.add('slider__wrap--hacked');
+    });
+  }
+
+  setActiveSlide() {
+    this.element.classList.add('slider__slide--active');
   }
 
   setBackgroundSlide(back, imgUrl) {
     back.style.backgroundImage = `url(${imgUrl})`;
   }
 
-  isActive(slide) {
-    slide.classList.contains('slider__slide--active');
+  isActive() {
+    return this.element.classList.contains('slider__slide--active');
   }
 
-  removeActiveSlide(slide) {
-    slide.classList.remove('slider__slide--active');
+  removeActiveSlide() {
+    this.element.classList.remove('slider__slide--active');
   }
 }

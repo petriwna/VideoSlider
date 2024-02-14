@@ -1,31 +1,22 @@
 export class VideoService {
   constructor() {
     this.videoIds = ['912222161', '912237164', '912221113'];
+    this.videoUrl = 'https://player.vimeo.com/video/';
   }
 
   async fetchVideoData(id) {
-    try {
-      const response = await fetch(
-        `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`https://player.vimeo.com/video/${id}`)}`,
-      );
+    const response = await fetch(
+      `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`${this.videoUrl}${id}`)}`,
+    );
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch video information. Status: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('Error fetching video information:', error);
-      throw error;
+    if (!response.ok) {
+      throw new Error(`Failed to fetch video information. Status: ${response.status}`);
     }
+
+    return await response.json();
   }
 
   async getVideos() {
-    try {
-      return await Promise.all(this.videoIds.map((id) => this.fetchVideoData(id)));
-    } catch (error) {
-      console.error('Error getting videos:', error);
-      throw error;
-    }
+    return await Promise.all(this.videoIds.map((id) => this.fetchVideoData(id)));
   }
 }

@@ -1,25 +1,24 @@
 import { Slide } from './Slide';
+import { VideoPlayer } from './VideoPlayer';
 
 export class Slider {
   constructor() {
-    this.slide = new Slide();
     this.slides = [];
     this.activeIndex = 0;
   }
 
   async renderSlider(videos) {
-    const slider = document.querySelector('.slider__slides');
+    const sliderContainer = document.querySelector('.slider__slides');
     const videoData = await videos;
 
     for (const video of videoData) {
-      const slide = this.slide.createSlide(video.html);
+      const slide = new Slide(video.title, video.thumbnail_url);
+      sliderContainer.appendChild(slide.element);
+
       this.slides.push(slide);
-
-      slider.appendChild(slide);
-
-      this.slide.setBackgroundSlide(slide.querySelector('.slider__back'), video.thumbnail_url);
     }
 
+    new VideoPlayer().getIdContainerVideoPlayer();
     this.setActiveSlide(this.activeIndex);
     this.setupEventListeners();
   }
@@ -28,9 +27,9 @@ export class Slider {
     if (this.slides.length > 0 && index >= 0 && index < this.slides.length) {
       this.slides.forEach((slide, i) => {
         if (i === index) {
-          this.slide.setActiveSlide(slide);
+          slide.setActiveSlide();
         } else {
-          this.slide.removeActiveSlide(slide);
+          slide.removeActiveSlide();
         }
       });
       this.activeIndex = index;
