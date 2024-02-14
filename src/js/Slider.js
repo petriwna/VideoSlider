@@ -21,14 +21,7 @@ export class Slider {
     }
 
     this.setActiveSlide(this.activeIndex);
-
-    const nextButton = document.querySelector('.carousel-button.next');
-    const prevButton = document.querySelector('.carousel-button.prev');
-
-    if (nextButton && prevButton) {
-      nextButton.addEventListener('click', () => this.handleNextClick());
-      prevButton.addEventListener('click', () => this.handlePrevClick());
-    }
+    this.setupEventListeners();
   }
 
   setActiveSlide(index) {
@@ -41,6 +34,16 @@ export class Slider {
         }
       });
       this.activeIndex = index;
+    }
+  }
+
+  setupEventListeners() {
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+
+    if (nextButton && prevButton) {
+      nextButton.addEventListener('click', () => this.handleNextClick());
+      prevButton.addEventListener('click', () => this.handlePrevClick());
     }
   }
 
