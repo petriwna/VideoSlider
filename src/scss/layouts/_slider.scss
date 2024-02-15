@@ -36,15 +36,14 @@
   }
 
   &__inner {
-    width: 80%;
-    left: 10%;
+    width: 100%;
+    //left: 10%;
     height: 100%;
-    position: absolute;
-    top: 0;
+    //position: absolute;
+    //top: 0;
     transform: scale(0.75);
     transition: transform calc(1800ms / 4) cubic-bezier(0.785, 0.135, 0.150, 0.860), box-shadow calc(1800ms / 4) cubic-bezier(0.785, 0.135, 0.150, 0.860), opacity calc(1800ms / 4) step-end;
     opacity: 0;
-    box-shadow: 0 3vh 3vh rgba(darken(hsl(220,50%,40%), 50%), 0);
   }
 
   &__content {

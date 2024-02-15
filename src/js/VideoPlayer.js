@@ -4,30 +4,52 @@ import { VideoService } from './VideoService';
 
 export class VideoPlayer {
   constructor() {
-    this.containers = this.getIdContainerVideoPlayer();
     this.videoService = new VideoService();
+    this.players = [];
   }
 
-  getIdContainerVideoPlayer() {
-    return document.querySelectorAll('.slider__content');
-  }
+  setVideoPlayer(container, videoId) {
+    const playerId = container.getAttribute('id');
+    const videoUrl = `${this.videoService.videoUrl}${videoId}`;
 
-  setVideoPlayer() {
-    this.containers.forEach((container, index) => {
-      const playerId = container.getAttribute('id');
-      const videoId = this.videoService.videoIds[index];
-      const videoUrl = `${this.videoService.videoUrl}${videoId}`;
-
-      this.createVimeoPlayer(playerId, videoId, videoUrl);
-      // this.players.push(player);
-    });
-  }
-
-  createVimeoPlayer(playerId, videoId, videoUrl) {
-    return new Vimeo.Player(playerId, {
+    const player = new Vimeo.Player(playerId, {
       id: videoId,
       url: videoUrl,
-      width: '1000',
+      muted: true,
     });
+
+    this.players.push(player);
+  }
+
+  setActiveVideoPlayer(slideIndex) {
+    this.players.forEach((player, index) => {
+      if (index === slideIndex) {
+        this.playVideo(player);
+      } else {
+        this.pauseVideo(player);
+      }
+    });
+  }
+
+  playVideo(player) {
+    player
+      .play()
+      .then(() => {
+        console.log('play');
+      })
+      .catch((error) => {
+        console.error('Error playing video:', error);
+      });
+  }
+
+  pauseVideo(player) {
+    player
+      .pause()
+      .then(() => {
+        console.log('pause');
+      })
+      .catch((error) => {
+        console.error('Error pausing video:', error);
+      });
   }
 }

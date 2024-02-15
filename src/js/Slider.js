@@ -3,23 +3,25 @@ import { VideoPlayer } from './VideoPlayer';
 
 export class Slider {
   constructor() {
+    this.videoPlayer = new VideoPlayer();
     this.slides = [];
     this.activeIndex = 0;
   }
 
   async renderSlider(videos) {
-    const sliderContainer = document.querySelector('.slider__slides');
-    const videoData = await videos;
+    const sliderContainer = document.querySelector('.slider');
+    const videoData = await videos.getVideos();
+    const videoIds = videos.videoIds;
 
-    for (const video of videoData) {
+    videoData.forEach((video, index) => {
       const slide = new Slide(video.title, video.thumbnail_url);
       sliderContainer.appendChild(slide.element);
-
+      this.videoPlayer.setVideoPlayer(slide.element.lastChild.firstChild, videoIds[index]);
       this.slides.push(slide);
-    }
+    });
 
-    new VideoPlayer().getIdContainerVideoPlayer();
     this.setActiveSlide(this.activeIndex);
+    // this.videoPlayer.setVideoPlayer();
     this.setupEventListeners();
   }
 
@@ -28,6 +30,7 @@ export class Slider {
       this.slides.forEach((slide, i) => {
         if (i === index) {
           slide.setActiveSlide();
+          this.videoPlayer.setActiveVideoPlayer(index);
         } else {
           slide.removeActiveSlide();
         }
