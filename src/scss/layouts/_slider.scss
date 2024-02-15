@@ -37,10 +37,7 @@
 
   &__inner {
     width: 100%;
-    //left: 10%;
     height: 100%;
-    //position: absolute;
-    //top: 0;
     transform: scale(0.75);
     transition: transform calc(1800ms / 4) cubic-bezier(0.785, 0.135, 0.150, 0.860), box-shadow calc(1800ms / 4) cubic-bezier(0.785, 0.135, 0.150, 0.860), opacity calc(1800ms / 4) step-end;
     opacity: 0;
@@ -79,7 +76,7 @@
       }
 
       .slider__back {
-        filter: blur(#{3vh*0.5});
+        filter: blur(8px);
         transition: filter calc(1800ms / 2) cubic-bezier(0.785, 0.135, 0.150, 0.860);
         transition-delay: calc(1800ms / 2) !important;
       }

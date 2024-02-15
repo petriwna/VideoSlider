@@ -6,7 +6,7 @@ export class VideoService {
 
   async fetchVideoData(id) {
     const response = await fetch(
-      `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`${this.videoUrl}${id}`)}`,
+      `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(`${this.videoUrl}${id}`)}/`,
     );
 
     if (!response.ok) {

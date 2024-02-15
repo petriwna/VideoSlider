@@ -34,22 +34,18 @@ export class VideoPlayer {
   playVideo(player) {
     player
       .play()
-      .then(() => {
-        console.log('play');
-      })
+      .then(() => {})
       .catch((error) => {
-        console.error('Error playing video:', error);
+        throw error;
       });
   }
 
   pauseVideo(player) {
     player
       .pause()
-      .then(() => {
-        console.log('pause');
-      })
+      .then(() => {})
       .catch((error) => {
-        console.error('Error pausing video:', error);
+        throw error;
       });
   }
 }
