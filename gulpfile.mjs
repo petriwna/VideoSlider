@@ -28,6 +28,10 @@ const paths = {
     html: {
         src: './src/**/*.html',
         dest: './dist'
+    },
+    vendors: {
+        src: 'node_modules/hammerjs/hammer.js',
+        dest: 'dist/vendors/'
     }
 };
 
@@ -59,7 +63,7 @@ gulp.task('scripts', () => {
         .pipe(replace(/import \{[^}]*\} from ['"].*['"];?\n?/g, ''))
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest(paths.scripts.dest))
-})
+});
 
 gulp.task('images', () => {
     return gulp.src(paths.images.src)

@@ -21,7 +21,6 @@ export class Slider {
     });
 
     this.setActiveSlide(this.activeIndex);
-    // this.videoPlayer.setVideoPlayer();
     this.setupEventListeners();
   }
 
@@ -40,20 +39,39 @@ export class Slider {
   }
 
   setupEventListeners() {
+    const sliderContainer = document.querySelector('.slider');
     const nextButton = document.querySelector('.carousel-button.next');
     const prevButton = document.querySelector('.carousel-button.prev');
 
-    if (nextButton && prevButton) {
-      nextButton.addEventListener('click', () => this.handleNextClick());
-      prevButton.addEventListener('click', () => this.handlePrevClick());
+    if (nextButton && prevButton && window.innerWidth > 767) {
+      nextButton.addEventListener('click', () => this.handleNext());
+      prevButton.addEventListener('click', () => this.handlePrev());
+    }
+
+    if (sliderContainer && window.innerWidth <= 767) {
+      let touchStartX;
+
+      sliderContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+
+      sliderContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const deltaX = touchEndX - touchStartX;
+        if (deltaX > 20) {
+          this.handlePrev();
+        } else if (deltaX < -20) {
+          this.handleNext();
+        }
+      });
     }
   }
 
-  handleNextClick() {
+  handleNext() {
     this.setActiveSlide((this.activeIndex + 1) % this.slides.length);
   }
 
-  handlePrevClick() {
+  handlePrev() {
     this.setActiveSlide((this.activeIndex - 1 + this.slides.length) % this.slides.length);
   }
 }

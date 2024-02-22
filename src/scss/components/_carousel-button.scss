@@ -3,6 +3,10 @@
   z-index:10;
   align-self: center;
 
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+
   &.prev &.next {
     position:absolute;
     transform: translateY(-50%);

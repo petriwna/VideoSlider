@@ -17,6 +17,7 @@ export class VideoPlayer {
       url: videoUrl,
       muted: true,
     });
+
     this.players.push(player);
   }
 

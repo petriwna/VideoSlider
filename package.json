@@ -1,5 +1,5 @@
 {
-  "name": "VideoSlider",
+  "name": "video-slider",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Nataliia Sychevska",
@@ -16,7 +16,9 @@
     "@vimeo/player": "^2.21.0",
     "cross-env": "7.0.3",
     "del": "6.1.1",
+    "hammerjs": "2.0.8",
     "sass": "1.69.5",
+    "swiper": "^11.0.6",
     "vimeo": "^2.3.1"
   },
   "devDependencies": {
@@ -32,6 +34,7 @@
     "gulp-clean-css": "4.3.0",
     "gulp-concat": "2.6.1",
     "gulp-connect": "5.7.0",
+    "gulp-copy": "^4.0.1",
     "gulp-dart-sass": "1.1.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-htmlmin": "5.0.1",
