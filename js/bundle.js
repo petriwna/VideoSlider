@@ -125,12 +125,31 @@ export class Slider {
   }
 
   setupEventListeners() {
+    const sliderContainer = document.querySelector('.slider');
     const nextButton = document.querySelector('.carousel-button.next');
     const prevButton = document.querySelector('.carousel-button.prev');
 
-    if (nextButton && prevButton) {
+    if (nextButton && prevButton && window.innerWidth > 767) {
       nextButton.addEventListener('click', () => this.handleNext());
       prevButton.addEventListener('click', () => this.handlePrev());
+    }
+
+    if (sliderContainer && window.innerWidth <= 767) {
+      let touchStartX;
+
+      sliderContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+      });
+
+      sliderContainer.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].clientX;
+        const deltaX = touchEndX - touchStartX;
+        if (deltaX > 20) {
+          this.handlePrev();
+        } else if (deltaX < -20) {
+          this.handleNext();
+        }
+      });
     }
   }
 
