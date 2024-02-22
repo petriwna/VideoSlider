@@ -1,7 +1,1 @@
-<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <symbol id="icon-arrow" viewBox="0 0 32 32">
-            <path d="m10.7 29.333-2.367-2.367L19.3 15.999 8.333 5.032 10.7 2.665l13.333 13.333L10.7 29.331z"/>
-        </symbol>
-    </defs>
-</svg>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="icon-arrow" viewBox="0 0 32 32"><path d="m10.7 29.333-2.367-2.367L19.3 15.999 8.333 5.032 10.7 2.665l13.333 13.333L10.7 29.331z"/></symbol></defs></svg>
