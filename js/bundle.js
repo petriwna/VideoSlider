@@ -107,7 +107,6 @@ export class Slider {
     });
 
     this.setActiveSlide(this.activeIndex);
-    // this.videoPlayer.setVideoPlayer();
     this.setupEventListeners();
   }
 
@@ -130,16 +129,16 @@ export class Slider {
     const prevButton = document.querySelector('.carousel-button.prev');
 
     if (nextButton && prevButton) {
-      nextButton.addEventListener('click', () => this.handleNextClick());
-      prevButton.addEventListener('click', () => this.handlePrevClick());
+      nextButton.addEventListener('click', () => this.handleNext());
+      prevButton.addEventListener('click', () => this.handlePrev());
     }
   }
 
-  handleNextClick() {
+  handleNext() {
     this.setActiveSlide((this.activeIndex + 1) % this.slides.length);
   }
 
-  handlePrevClick() {
+  handlePrev() {
     this.setActiveSlide((this.activeIndex - 1 + this.slides.length) % this.slides.length);
   }
 }
@@ -161,6 +160,7 @@ export class VideoPlayer {
       url: videoUrl,
       muted: true,
     });
+
     this.players.push(player);
   }
 
